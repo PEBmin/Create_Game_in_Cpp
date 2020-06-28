@@ -30,14 +30,18 @@ protected:
 
 public:
 	Army(const string &name, int n, const int money);
+	// 대상의 이름을 호출
 	const string & getName();
+	// 대상의 갯수를 호출
 	int getCount();
+	// 대상의 상태를 알려줌
 	void printStatus();
 
+	// n번째 유닛을 호출
 	Entity * getEntity(int n);
-
+	// n번째 유닛을 제거
 	void removeEntity(int n);
-
+	// Enemy를 공격
 	void Attack(Army &Enemy);
 };
 

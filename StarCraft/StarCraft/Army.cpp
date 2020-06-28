@@ -16,11 +16,13 @@ Army::Army(const string & name, int n, const int money)
 		n = _MAX_ENTITY;		  
 	}
 
+	// n만큼의 유닛을 money에 맞게 생성.
 	for (int i = 0; i < n; i++)
 	{
 		if (getRandom() > _HYDRA_RATIO)	   
 		{
-			if (_money < 50)	break;	   // 돈이 50원 밑이면 반복문 정지
+			// 돈이 50원 밑이면 반복문 정지
+			if (_money < 50)	break;	   
 			else
 			{
 				Entity* zer = new Zergling();
@@ -30,7 +32,8 @@ Army::Army(const string & name, int n, const int money)
 		}
 		else						    
 		{
-			if (_money < 150)	break;		    // 돈이 150원 밑이면 반복문 정지
+			// 돈이 150원 밑이면 반복문 정지
+			if (_money < 150)	break;		    
 			else
 			{
 				Entity* hyd = new Hydra();
@@ -79,10 +82,11 @@ void Army::printStatus()
 }
 
 
-
 Entity * Army::getEntity(int n)
 {
+	// iterator를 선언함
 	list<Entity*>::iterator it = _members.begin();
+	// n만큼 반복자를 이동
 	advance(it, n);
 	return (*it);
 }
@@ -101,6 +105,8 @@ void Army::Attack(Army& Enemy)
 	int enemy = 0;
 	bool result;
 
+	// 0~1의 값을 랜덤으로 받아 유닛의 갯수를 곱해줌
+	// int로 소수점을 없애서 n번째 유닛이 선택됨.
 	me = (int)(getRandom()*_members.size());
 	enemy = (int)(getRandom()*Enemy._members.size());
 
